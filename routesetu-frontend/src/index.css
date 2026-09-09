@@ -6,6 +6,21 @@ body { margin: 0; min-width: 320px; }
 a { color: #7d3cff; text-decoration: none; }
 button, input { font: inherit; }
 button { cursor: pointer; }
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.8,.2,1); transition-delay: var(--reveal-delay, 0ms); }
+.reveal-visible { opacity: 1; transform: translateY(0); }
+.auth-content { width: 100%; display: flex; justify-content: center; }
+.hero-panel > .reveal:first-child { animation: float-in .8s ease both; }
+.feature:hover { transform: translateY(-5px); background: #ffffff22; border-color: #ffffff66; transition: transform .25s ease, background .25s ease, border-color .25s ease; }
+.button { transition: transform .2s ease, filter .2s ease, box-shadow .2s ease; }
+.button:hover { transform: translateY(-2px); box-shadow: 0 10px 22px #8542f540; }
+.field input, .input-wrap { transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease; }
+.field input:focus, .input-wrap:focus-within { transform: translateY(-1px); }
+.stat-card, .table-card, .alert-card { transition: transform .25s ease, box-shadow .25s ease; }
+.stat-card:hover, .table-card:hover, .alert-card:hover { transform: translateY(-4px); box-shadow: 0 12px 28px #30204412; }
+.alert-dot { animation: pulse-dot 2s ease-in-out infinite; }
+@keyframes float-in { from { opacity: 0; transform: translateX(-18px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes pulse-dot { 0%, 100% { box-shadow: 0 0 0 0 #f2666666; } 50% { box-shadow: 0 0 0 6px #f2666600; } }
+@media (prefers-reduced-motion: reduce) { .reveal, .hero-panel > .reveal:first-child, .alert-dot { animation: none; transition: none; transform: none; opacity: 1; } .button, .feature, .stat-card, .table-card, .alert-card { transition: none; } }
 .auth-shell { min-height: 100vh; display: grid; grid-template-columns: minmax(420px, 1fr) minmax(470px, 1fr); background: #fff; }
 .hero-panel { padding: 48px clamp(40px, 7vw, 112px) 38px; color: #fff; display: flex; flex-direction: column; background: linear-gradient(145deg, #7d3cff, #963dff); }
 .brand { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 14px; color: #fff; }
