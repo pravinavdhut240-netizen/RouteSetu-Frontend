@@ -1,0 +1,10 @@
+import { ArrowRight, CloudRain, MapPin, ShieldCheck, TriangleAlert, Truck } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import AppShell from '../../components/AppShell';
+
+export default function RouteDetails() {
+  return <AppShell><PageHeading eyebrow="Selected route" title="Guwahati to Tawang" text="NH-13 · Updated 12 minutes ago"><Link className="button" to="/live-navigation">Start navigation <ArrowRight size={15} /></Link></PageHeading><div className="detail-grid"><section className="route-visual large-map"><RouteMap /><div className="map-legend"><span><i className="legend-current" /> Current route</span><span><i className="legend-safe" /> Safer alternative</span></div></section><section className="detail-card"><div className="detail-title"><h2>Route overview</h2><span className="risk risk-medium">Medium risk</span></div><div className="route-summary"><MapPin /><div><strong>310 km</strong><small>Estimated 9h 45m</small></div><Truck /><div><strong>4 checkpoints</strong><small>2 mountain corridors</small></div></div><Info icon={<CloudRain />} title="Weather" text="Heavy rain expected after 4:00 PM" /><Info icon={<TriangleAlert />} title="Road conditions" text="Landslide watch near Bomdila" /><Info icon={<ShieldCheck />} title="Safety score" text="72 / 100 · Moderate caution" /></section></div></AppShell>;
+}
+function PageHeading({ eyebrow, title, text, children }) { return <div className="page-heading"><div><span className="eyebrow purple">{eyebrow}</span><h1>{title}</h1><p>{text}</p></div>{children}</div>; }
+function Info({ icon, title, text }) { return <div className="info-row"><span>{icon}</span><div><strong>{title}</strong><small>{text}</small></div></div>; }
+function RouteMap() { return <svg viewBox="0 0 700 360" role="img" aria-label="Route map"><path className="map-road" d="M58 285 C180 250 170 100 330 130 S490 285 640 72" /><path className="map-safe" d="M58 285 C210 320 280 220 390 210 S520 145 640 72" /><circle cx="58" cy="285" r="9" /><circle cx="640" cy="72" r="9" /><circle className="map-alert" cx="330" cy="130" r="8" /></svg>; }

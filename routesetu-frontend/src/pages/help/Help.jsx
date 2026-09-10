@@ -1,0 +1,4 @@
+import { ArrowRight, CircleHelp, MessageCircle, PhoneCall } from 'lucide-react';
+import AppShell from '../../components/AppShell';
+export default function Help() { return <AppShell><div className="page-heading"><div><span className="eyebrow purple">Support center</span><h1>How can we help?</h1><p>Get assistance with routes, vehicles, and dispatch operations.</p></div></div><div className="help-grid"><HelpCard icon={<CircleHelp />} title="Browse help articles" text="Find quick answers to common questions." /><HelpCard icon={<MessageCircle />} title="Chat with support" text="Talk to a RouteSetu specialist." /><HelpCard icon={<PhoneCall />} title="Assistance portal" text="Request urgent transport dispatch help." /></div></AppShell>; }
+function HelpCard({ icon, title, text }) { return <a className="help-card" href="#support"><span>{icon}</span><strong>{title}</strong><p>{text}</p><ArrowRight size={16} /></a>; }

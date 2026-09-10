@@ -1,0 +1,5 @@
+import { CloudRain, Droplets, Wind, Eye } from 'lucide-react';
+import AppShell from '../../components/AppShell';
+export default function WeatherDetails() { return <AppShell><PageHeading title="Weather along your route" text="Guwahati → Tawang · Next 12 hours" /><div className="weather-hero"><div><span className="eyebrow">Current conditions · Bomdila</span><h2>Heavy rain expected</h2><p>Carry extra visibility equipment and avoid exposed mountain passes after 4:00 PM.</p></div><CloudRain size={56} /></div><div className="weather-grid"><Weather icon={<Droplets />} label="Rain probability" value="78%" /><Weather icon={<Wind />} label="Wind speed" value="18 km/h" /><Weather icon={<Eye />} label="Visibility" value="4.2 km" /></div></AppShell>; }
+function PageHeading({ title, text }) { return <div className="page-heading"><div><span className="eyebrow purple">Route intelligence</span><h1>{title}</h1><p>{text}</p></div></div>; }
+function Weather({ icon, label, value }) { return <div className="weather-card"><span>{icon}</span><small>{label}</small><strong>{value}</strong></div>; }

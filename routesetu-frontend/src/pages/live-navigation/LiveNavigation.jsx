@@ -1,0 +1,7 @@
+import { ArrowLeft, LocateFixed, Navigation, Phone, Volume2 } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import AppShell from '../../components/AppShell';
+
+export default function LiveNavigation() {
+  return <AppShell><div className="navigation-layout"><section className="navigation-map"><div className="map-floating"><Link to="/route-details"><ArrowLeft size={16} /> Route details</Link><span className="live-pill"><i /> Live</span></div><svg viewBox="0 0 800 600" role="img" aria-label="Live navigation map"><path className="map-road faint" d="M10 470 C170 410 150 170 360 220 S610 420 790 90" /><path className="map-safe" d="M10 470 C170 410 150 170 360 220 S610 420 790 90" /><circle cx="360" cy="220" r="12" className="location-pulse" /></svg><button className="locate-button"><LocateFixed size={18} /></button></section><aside className="navigation-panel"><span className="eyebrow purple">Live navigation</span><h1>Guwahati → Tawang</h1><div className="next-turn"><Navigation size={26} /><div><small>Next turn in 1.2 km</small><strong>Continue on NH-13</strong></div></div><div className="nav-stats"><div><strong>7h 42m</strong><small>Remaining</small></div><div><strong>248 km</strong><small>Distance left</small></div></div><div className="nav-alert"><strong>Rainfall ahead</strong><p>Reduce speed near Bomdila corridor.</p></div><div className="navigation-actions"><button><Volume2 size={17} /> Voice guidance</button><button><Phone size={17} /> Assistance</button></div></aside></div></AppShell>;
+}

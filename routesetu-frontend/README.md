@@ -16,6 +16,8 @@ Routes:
 - `/verify-otp` OTP verification
 - `/forgot-password` Forgot password
 - `/reset-password` Reset password
+- `/reset-success` Password reset confirmation
+- `/route-planning` Route comparison and planning
 - `/dashboard` Dispatch dashboard
 
 http://localhost:5173/

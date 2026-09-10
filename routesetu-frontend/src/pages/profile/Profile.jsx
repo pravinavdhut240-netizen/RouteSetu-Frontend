@@ -1,0 +1,4 @@
+import { Mail, Phone, Truck, UserRound } from 'lucide-react';
+import AppShell from '../../components/AppShell';
+export default function Profile() { return <AppShell><div className="page-heading"><div><span className="eyebrow purple">Account</span><h1>Profile</h1><p>Manage your dispatcher and fleet information.</p></div></div><section className="profile-card"><div className="profile-avatar">RK</div><h2>Rajesh Kumar</h2><span className="profile-role">Fleet dispatcher</span><div className="profile-fields"><Info icon={<Mail />} label="Email" value="rajesh@routesetu.in" /><Info icon={<Phone />} label="Mobile" value="+91 98765 43210" /><Info icon={<Truck />} label="Fleet" value="North East Transit · 12 vehicles" /></div><button className="button">Edit profile</button></section></AppShell>; }
+function Info({ icon, label, value }) { return <div><span>{icon}</span><small>{label}</small><strong>{value}</strong></div>; }

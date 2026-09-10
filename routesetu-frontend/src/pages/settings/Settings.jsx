@@ -1,0 +1,4 @@
+import { Bell, LockKeyhole, MapPinned, ToggleRight } from 'lucide-react';
+import AppShell from '../../components/AppShell';
+export default function Settings() { return <AppShell><div className="page-heading"><div><span className="eyebrow purple">Account preferences</span><h1>Settings</h1><p>Control your notifications, security, and map preferences.</p></div></div><section className="settings-card"><Setting icon={<Bell />} title="Route alerts" text="Receive weather and road condition notifications" /><Setting icon={<MapPinned />} title="Map preference" text="Show safer alternatives by default" /><Setting icon={<LockKeyhole />} title="Two-step verification" text="Protect your account with an OTP at sign in" /></section></AppShell>; }
+function Setting({ icon, title, text }) { return <div className="setting-row"><span>{icon}</span><div><strong>{title}</strong><small>{text}</small></div><ToggleRight className="toggle-on" /></div>; }
