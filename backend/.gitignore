@@ -9,6 +9,7 @@ venv/
 
 # Environment variables
 .env
+*.db
 
 # IDE
 .vscode/

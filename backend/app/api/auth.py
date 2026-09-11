@@ -53,6 +53,7 @@ def register(
     user = User(
         name=data.name,
         email=data.email,
+        mobile_number=data.mobile_number,
         password_hash=hash_password(data.password)
     )
 

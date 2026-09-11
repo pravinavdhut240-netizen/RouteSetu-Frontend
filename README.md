@@ -47,6 +47,29 @@ The system will provide users with safer and optimized routes between locations.
 
 - PostgreSQL
 
+## Local development
+
+Run the polished frontend and backend in separate terminals:
+
+```bash
+cd routesetu-frontend
+npm install
+npm run dev
+```
+
+```bash
+cd backend
+python3 -m venv .venv
+. .venv/bin/activate
+pip install -r requirements.txt
+cp .env.example .env
+alembic upgrade head
+uvicorn app.main:app --reload --port 8000
+```
+
+The backend uses SQLite by default for local development and PostgreSQL when
+`DATABASE_URL` is configured for production.
+
 ---
 
 # 📁 Project Structure
