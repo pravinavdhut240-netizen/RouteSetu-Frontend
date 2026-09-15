@@ -15,6 +15,7 @@ from app.schemas.auth import (
     LoginRequest,
     UserResponse,
     TokenResponse
+    , ProfileUpdateRequest
 )
 
 
@@ -125,4 +126,24 @@ def get_current_user(
             detail="User not found"
         )
 
+    return user
+
+
+@router.patch(
+    "/me",
+    response_model=UserResponse
+)
+def update_current_user(
+    data: ProfileUpdateRequest,
+    user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    existing_user = db.query(User).filter(User.email == data.email, User.id != user.id).first()
+    if existing_user:
+        raise HTTPException(status_code=409, detail="Email already registered")
+    user.name = data.name.strip()
+    user.email = data.email
+    user.mobile_number = data.mobile_number.strip() if data.mobile_number else None
+    db.commit()
+    db.refresh(user)
     return user

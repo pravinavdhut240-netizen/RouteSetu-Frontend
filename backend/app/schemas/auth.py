@@ -13,6 +13,12 @@ class LoginRequest(BaseModel):
     password: str
 
 
+class ProfileUpdateRequest(BaseModel):
+    name: str
+    email: EmailStr
+    mobile_number: str | None = None
+
+
 class UserResponse(BaseModel):
     id: int
     name: str

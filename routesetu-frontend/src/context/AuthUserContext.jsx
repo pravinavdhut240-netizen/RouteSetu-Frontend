@@ -6,10 +6,16 @@ const AuthUserContext = createContext(null);
 export function AuthUserProvider({ children }) {
   const [user, setUser] = useState(null);
   useEffect(() => {
-    if (!localStorage.getItem('routesetu-token')) return;
-    authApi.me().then(setUser).catch(() => {
-      localStorage.removeItem('routesetu-token');
-    });
+    function loadUser() {
+      if (!localStorage.getItem('routesetu-token')) { setUser(null); return; }
+      authApi.me().then(setUser).catch(() => {
+        localStorage.removeItem('routesetu-token');
+        setUser(null);
+      });
+    }
+    loadUser();
+    window.addEventListener('routesetu-auth-changed', loadUser);
+    return () => window.removeEventListener('routesetu-auth-changed', loadUser);
   }, []);
   return <AuthUserContext.Provider value={user}>{children}</AuthUserContext.Provider>;
 }
