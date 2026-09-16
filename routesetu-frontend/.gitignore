@@ -1,0 +1,6 @@
+.env
+.env.*
+!.env.example
+!.env.production
+node_modules/
+dist/

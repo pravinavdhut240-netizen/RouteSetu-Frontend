@@ -1,12 +1,29 @@
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
+const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000').replace(/\/+$/, '');
 
 async function request(path, options = {}) {
-  const response = await fetch(`${API_BASE_URL}${path}`, {
-    ...options,
-    headers: { 'Content-Type': 'application/json', ...options.headers }
-  });
+  let response;
+  try {
+    response = await fetch(`${API_BASE_URL}${path}`, {
+      ...options,
+      headers: { 'Content-Type': 'application/json', ...options.headers }
+    });
+  } catch {
+    throw new Error('The RouteSetu backend is unavailable. Check your connection and try again.');
+  }
+
   const data = await response.json().catch(() => ({}));
-  if (!response.ok) throw new Error(formatError(data.detail || data.message || 'Request failed'));
+  if (!response.ok) {
+    const detail = data.detail || data.message;
+    const fallback = {
+      400: 'The request could not be processed.',
+      401: 'Your session has expired. Please sign in again.',
+      403: 'You do not have permission to perform this action.',
+      404: 'The requested resource was not found.',
+      422: 'Please check the submitted information.',
+      500: 'The backend encountered an error. Please try again later.'
+    }[response.status] || 'Request failed.';
+    throw new Error(formatError(detail || fallback));
+  }
   return data;
 }
 
@@ -26,7 +43,7 @@ function formatError(detail) {
 export const authApi = {
   login: (credentials) => request('/api/v1/auth/login', { method: 'POST', body: JSON.stringify(credentials) }),
   signup: (details) => request('/api/v1/auth/register', { method: 'POST', body: JSON.stringify(details) }),
-  me: () => request('/api/v1/auth/me', { headers: { Authorization: `Bearer ${localStorage.getItem('routesetu-token')}` } }),
+  me: () => request('/api/v1/auth/me', { headers: authenticatedHeaders() }),
   updateProfile: (details) => request('/api/v1/auth/me', {
     method: 'PATCH',
     headers: authenticatedHeaders(),
@@ -43,12 +60,18 @@ function authenticatedHeaders() {
 
 export const roadApi = {
   list: () => request('/api/v1/roads'),
+  get: (roadId) => request(`/api/v1/roads/${roadId}`),
   incidents: () => request('/api/v1/incidents'),
+  roadIncidents: (roadId) => request(`/api/v1/roads/${roadId}/incidents`),
   risks: () => request('/api/v1/risks'),
   reportIncident: (roadId, incident) => request(`/api/v1/roads/${roadId}/incidents`, {
     method: 'POST',
     headers: authenticatedHeaders(),
     body: JSON.stringify(incident)
+  }),
+  createRisk: (roadId, prediction) => request(`/api/v1/roads/${roadId}/risk`, {
+    method: 'POST',
+    body: JSON.stringify(prediction)
   })
 };
 
