@@ -14,8 +14,20 @@ alembic upgrade head
 uvicorn app.main:app --reload --port 8000
 ```
 
-The default development database is SQLite (`routesetu.db`). Set `DATABASE_URL`
-to a PostgreSQL connection string for production.
+Local development defaults to SQLite (`routesetu.db`). For PostgreSQL, set
+`DATABASE_URL` to a connection string such as:
+
+```text
+postgresql+psycopg2://postgres:password@localhost:5432/routesetu
+```
+
+On Render, the `render.yaml` configuration provisions PostgreSQL and injects its
+connection string into `DATABASE_URL`. The API startup command runs
+`alembic upgrade head` before starting the server, which creates or updates the
+PostgreSQL schema.
+
+The existing SQLite file is not copied automatically to PostgreSQL. Export and
+import its data separately if local data needs to be retained.
 
 Health check:
 
