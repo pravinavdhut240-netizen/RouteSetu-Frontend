@@ -5,6 +5,11 @@ from pydantic_settings import BaseSettings
 
 
 BACKEND_DIR = Path(__file__).resolve().parents[2]
+REQUIRED_CORS_ORIGINS = (
+    "https://routesetu-frontend.onrender.com",
+    "http://localhost:5173",
+    "http://localhost:8000",
+)
 
 
 class Settings(BaseSettings):
@@ -21,6 +26,12 @@ class Settings(BaseSettings):
         if value.startswith("postgres://"):
             return value.replace("postgres://", "postgresql+psycopg2://", 1)
         return value
+
+    @field_validator("CORS_ORIGINS")
+    @classmethod
+    def normalize_cors_origins(cls, value: str) -> str:
+        configured_origins = [origin.strip() for origin in value.split(",") if origin.strip()]
+        return ",".join(dict.fromkeys((*configured_origins, *REQUIRED_CORS_ORIGINS)))
 
     class Config:
         env_file = BACKEND_DIR / ".env"
