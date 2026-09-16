@@ -5,4 +5,6 @@ import App from './App';
 import './index.css';
 import { AuthUserProvider } from './context/AuthUserContext';
 
+document.documentElement.dataset.theme = localStorage.getItem('routesetu-theme') === 'light' ? 'light' : 'dark';
+
 createRoot(document.getElementById('root')).render(<StrictMode><BrowserRouter><AuthUserProvider><App /></AuthUserProvider></BrowserRouter></StrictMode>);

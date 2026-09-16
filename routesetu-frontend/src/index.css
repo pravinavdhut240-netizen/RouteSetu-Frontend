@@ -1,8 +1,53 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap');
 
-:root { font-family: 'DM Sans', sans-serif; color: #171326; background: #f7f7f9; font-synthesis: none; }
+:root {
+	--background: #f7f7f9;
+	--foreground: #171326;
+	--card: #ffffff;
+	--card-foreground: #25202e;
+	--muted: #f8f4ff;
+	--muted-foreground: #81788e;
+	--border: #eeeaf4;
+	--input: #faf8ff;
+	--input-border: #ded6ec;
+	--primary: #8542f5;
+	--primary-foreground: #ffffff;
+	--secondary: #f1eaff;
+	--secondary-foreground: #6c39c5;
+	--accent: #caa7ff;
+	--accent-foreground: #30263b;
+	--danger: #ef6363;
+	--warning: #efb630;
+	--success: #16a675;
+	font-family: 'DM Sans', sans-serif;
+	color: var(--foreground);
+	background: var(--background);
+	font-synthesis: none;
+}
+
+html[data-theme='dark'] {
+	color-scheme: dark;
+	--background: #15121c;
+	--foreground: #f5f1fa;
+	--card: #211b2b;
+	--card-foreground: #f5f1fa;
+	--muted: #2b2338;
+	--muted-foreground: #d8cee3;
+	--border: #4a3b5b;
+	--input: #2b2338;
+	--input-border: #5a4870;
+	--primary: #9c6af2;
+	--primary-foreground: #ffffff;
+	--secondary: #35264b;
+	--secondary-foreground: #eadcff;
+	--accent: #caa7ff;
+	--accent-foreground: #211b2b;
+	--danger: #ff9aa4;
+	--warning: #ffd56a;
+	--success: #72e0b2;
+}
 * { box-sizing: border-box; }
-body { margin: 0; min-width: 320px; }
+body { margin: 0; min-width: 320px; overflow-x: hidden; }
 a { color: #7d3cff; text-decoration: none; }
 button, input { font: inherit; }
 button { cursor: pointer; }
@@ -131,3 +176,228 @@ html[data-theme='dark'] .header-popover { border-color: #4a3b5b; background: #21
 @media (max-width: 620px) { .vertical-taskbar { width: min(290px, 86vw); } }
 .vertical-taskbar-nav { min-height: 0; overflow-y: auto; padding-right: 4px; scrollbar-width: thin; scrollbar-color: #b58cff transparent; }.vertical-taskbar-nav::-webkit-scrollbar { width: 5px; }.vertical-taskbar-nav::-webkit-scrollbar-thumb { border-radius: 5px; background: #b58cff; }.history-card { overflow-x: auto; }.history-card table { min-width: 680px; }.history-card th { color: #6e637b; }.history-card td { color: #30283b; }.history-card .risk { white-space: nowrap; }html[data-theme='dark'] .history-card th { color: #c5b9d0; }html[data-theme='dark'] .history-card td { color: #f5f1fa; }html[data-theme='dark'] .history-card td svg { color: #caa7ff; }
 @media (max-width: 800px) { .app-sidebar { position: fixed; z-index: 10; top: 0; bottom: 0; left: -250px; transition: left .25s ease; box-shadow: 8px 0 25px #20132b20; }.app-sidebar.sidebar-open { left: 0; }.close-menu, .menu-toggle { display: block; }.close-menu { margin-left: auto; color: #81788e; }.menu-toggle { color: #8542f5; }.header-title { font-size: 10px; }.app-content { padding: 28px 18px; }.detail-grid, .terrain-grid, .navigation-layout { grid-template-columns: 1fr; }.navigation-map { min-height: 420px; }.navigation-panel { min-height: auto; }.weather-grid, .help-grid { grid-template-columns: 1fr; }.page-heading { align-items: flex-start; gap: 18px; flex-direction: column; }.profile-fields { grid-template-columns: 1fr; }.large-map { min-height: 350px; }.route-visual svg { height: 250px; } }
+@media (max-width: 800px) { .planning-workspace { grid-template-columns: 1fr; } }
+
+html[data-theme='dark'] body,
+html[data-theme='dark'] .auth-shell,
+html[data-theme='dark'] .planning-page,
+html[data-theme='dark'] .content-panel,
+html[data-theme='dark'] .app-content {
+	background: var(--background);
+	color: var(--foreground);
+}
+
+html[data-theme='dark'] .auth-form,
+html[data-theme='dark'] .card-form,
+html[data-theme='dark'] .success-card,
+html[data-theme='dark'] .planning-card {
+	color: var(--card-foreground);
+	background: var(--card);
+	border-color: var(--border);
+}
+
+html[data-theme='dark'] .form-heading p,
+html[data-theme='dark'] .switch,
+html[data-theme='dark'] .resend,
+html[data-theme='dark'] .check,
+html[data-theme='dark'] .checklist,
+html[data-theme='dark'] .checklist small,
+html[data-theme='dark'] .auth-form footer,
+html[data-theme='dark'] .success-card p {
+	color: var(--muted-foreground);
+}
+
+html[data-theme='dark'] .field,
+html[data-theme='dark'] .top-back,
+html[data-theme='dark'] .route-field,
+html[data-theme='dark'] .planning-heading h1,
+html[data-theme='dark'] .route-options strong,
+html[data-theme='dark'] .comparison-heading,
+html[data-theme='dark'] .planning-card footer {
+	color: var(--foreground);
+}
+
+html[data-theme='dark'] .field input,
+html[data-theme='dark'] .input-wrap,
+html[data-theme='dark'] .input-wrap input,
+html[data-theme='dark'] .otp-row input,
+html[data-theme='dark'] .profile-input input,
+html[data-theme='dark'] .route-field div,
+html[data-theme='dark'] select,
+html[data-theme='dark'] textarea {
+	color: var(--foreground);
+	background: var(--input);
+	border-color: var(--input-border);
+}
+
+html[data-theme='dark'] .field input::placeholder,
+html[data-theme='dark'] .input-wrap input::placeholder,
+html[data-theme='dark'] .profile-input input::placeholder,
+html[data-theme='dark'] textarea::placeholder {
+	color: #b8abc6;
+	opacity: 1;
+}
+
+html[data-theme='dark'] .field input:focus,
+html[data-theme='dark'] .input-wrap:focus-within,
+html[data-theme='dark'] .otp-row input:focus,
+html[data-theme='dark'] .profile-input input:focus,
+html[data-theme='dark'] select:focus,
+html[data-theme='dark'] textarea:focus {
+	border-color: var(--accent);
+	box-shadow: 0 0 0 3px #caa7ff30;
+}
+
+html[data-theme='dark'] .input-wrap button,
+html[data-theme='dark'] .field-chevron,
+html[data-theme='dark'] .close-menu,
+html[data-theme='dark'] .menu-toggle,
+html[data-theme='dark'] .icon-button,
+html[data-theme='dark'] .profile-trigger,
+html[data-theme='dark'] .options-trigger {
+	color: var(--muted-foreground);
+}
+
+html[data-theme='dark'] .button-secondary,
+html[data-theme='dark'] .continue-button,
+html[data-theme='dark'] .theme-toggle {
+	color: var(--secondary-foreground);
+	background: var(--secondary);
+	border-color: var(--border);
+}
+
+html[data-theme='dark'] .button-primary,
+html[data-theme='dark'] .button:not(.button-secondary):not(.button-gold),
+html[data-theme='dark'] .locate-button {
+	color: var(--primary-foreground);
+	background: var(--primary);
+}
+
+html[data-theme='dark'] button:disabled,
+html[data-theme='dark'] .button:disabled {
+	color: #978aa5;
+	background: #30283b;
+	border-color: #413550;
+	opacity: 1;
+	cursor: not-allowed;
+}
+
+html[data-theme='dark'] button:focus-visible,
+html[data-theme='dark'] a:focus-visible,
+html[data-theme='dark'] input:focus-visible {
+	outline: 2px solid var(--accent);
+	outline-offset: 2px;
+}
+
+html[data-theme='dark'] .navigation-layout,
+html[data-theme='dark'] .navigation-panel,
+html[data-theme='dark'] .navigation-actions button,
+html[data-theme='dark'] .nav-stats div,
+html[data-theme='dark'] .profile-fields > div,
+html[data-theme='dark'] .planning-note,
+html[data-theme='dark'] .desktop-route-option,
+html[data-theme='dark'] .route-map,
+html[data-theme='dark'] .desktop-route-map,
+html[data-theme='dark'] .vehicle-icon,
+html[data-theme='dark'] .history-filter,
+html[data-theme='dark'] .report-period,
+html[data-theme='dark'] .options-popover,
+html[data-theme='dark'] .overview-options,
+html[data-theme='dark'] .header-popover,
+html[data-theme='dark'] .vertical-taskbar {
+	color: var(--card-foreground);
+	background: var(--card);
+	border-color: var(--border);
+}
+
+html[data-theme='dark'] .navigation-map {
+	background: #191622;
+}
+
+html[data-theme='dark'] .map-floating a,
+html[data-theme='dark'] .live-pill {
+	color: var(--foreground);
+	background: var(--card);
+	box-shadow: 0 5px 15px #0008;
+}
+
+html[data-theme='dark'] .nav-alert,
+html[data-theme='dark'] .risk-detail.danger,
+html[data-theme='dark'] .planning-risk {
+	color: #ffb2ba;
+	background: #4a2630;
+}
+
+html[data-theme='dark'] .risk-detail.warning,
+html[data-theme='dark'] .nav-alert {
+	background: #4a3920;
+}
+
+html[data-theme='dark'] .risk-detail.safe,
+html[data-theme='dark'] .analysis-action,
+html[data-theme='dark'] .planning-status {
+	background: #1e4035;
+	color: var(--success);
+}
+
+html[data-theme='dark'] .risk-detail small,
+html[data-theme='dark'] .nav-alert p,
+html[data-theme='dark'] .planning-risk small,
+html[data-theme='dark'] .analysis-action small {
+	color: var(--muted-foreground);
+}
+
+html[data-theme='dark'] table th,
+html[data-theme='dark'] table td,
+html[data-theme='dark'] .alert-item,
+html[data-theme='dark'] .vehicle-row,
+html[data-theme='dark'] .fleet-route-title,
+html[data-theme='dark'] .fleet-detail,
+html[data-theme='dark'] .setting-row,
+html[data-theme='dark'] .info-row,
+html[data-theme='dark'] .popover-heading,
+html[data-theme='dark'] .popover-profile,
+html[data-theme='dark'] .popover-alert,
+html[data-theme='dark'] .profile-popover > a,
+html[data-theme='dark'] .profile-popover > button {
+	border-color: var(--border);
+}
+
+html[data-theme='dark'] table th,
+html[data-theme='dark'] .empty-fleet p,
+html[data-theme='dark'] .fleet-detail small,
+html[data-theme='dark'] .fleet-route-row small,
+html[data-theme='dark'] .setting-row small,
+html[data-theme='dark'] .alert-item p,
+html[data-theme='dark'] .alert-item small,
+html[data-theme='dark'] .popover-alert small,
+html[data-theme='dark'] .popover-alert time,
+html[data-theme='dark'] .popover-profile small,
+html[data-theme='dark'] .report-card p,
+html[data-theme='dark'] .chart-y,
+html[data-theme='dark'] .chart-labels {
+	color: var(--muted-foreground);
+}
+
+html[data-theme='dark'] .status,
+html[data-theme='dark'] .optimized-pill {
+	color: var(--secondary-foreground);
+	background: var(--secondary);
+}
+
+html[data-theme='dark'] .risk-low { color: #72e0b2; background: #1e4035; }
+html[data-theme='dark'] .risk-medium { color: #ffd56a; background: #4a3920; }
+html[data-theme='dark'] .route-map-empty { color: var(--muted-foreground); background: #191622; }
+html[data-theme='dark'] .terrain-analysis-summary > div { color: var(--accent-foreground); background: #8d72c9; }
+html[data-theme='dark'] .terrain-analysis-summary small,
+html[data-theme='dark'] .terrain-analysis-summary strong,
+html[data-theme='dark'] .terrain-analysis-summary em { color: #171326; }
+html[data-theme='dark'] .desktop-route-map text { fill: #e8dff0; }
+html[data-theme='dark'] .chart-grid { background: repeating-linear-gradient(to bottom, #3b304a 0, #3b304a 1px, transparent 1px, transparent 25%); }
+html[data-theme='dark'] .progress { background: #3b304a; }
+html[data-theme='dark'] .leaflet-control-attribution,
+html[data-theme='dark'] .leaflet-control-zoom a,
+html[data-theme='dark'] .leaflet-popup-content-wrapper,
+html[data-theme='dark'] .leaflet-popup-tip { color: var(--foreground); background: var(--card); }
+html[data-theme='dark'] .leaflet-control-zoom a { border-color: var(--border); }
+html[data-theme='dark'] .leaflet-control-attribution a { color: var(--accent); }
